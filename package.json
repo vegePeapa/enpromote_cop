@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "connect-redis": "^9.0.0",
-    "dotenv": "^17.2.3",
-    "redis": "^5.11.0"
+    "dotenv": "^17.4.2",
+    "redis": "^5.11.0",
+    "websocket": "^1.0.35"
   }
 }

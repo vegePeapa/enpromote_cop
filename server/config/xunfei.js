@@ -2,9 +2,9 @@
 // 科大讯飞口语评测配置
 const xunfeiConfig = {
   // API密钥 - 从环境变量中读取
-  appId: process.env.XUNFEI_APP_ID || '289f502d',
-  apiKey: process.env.XUNFEI_API_KEY || 'cf4bbd18437092775e1b6464a08ffe39',
-  apiSecret: process.env.XUNFEI_API_SECRET || 'MjYzNGRlMzM0MGI5Nzg1NjgxNmFhYzk3',
+  appId: process.env.XUNFEI_APP_ID || 'b17fdca0',
+  apiKey: process.env.XUNFEI_API_KEY || '486727e853edc481bf30ea7987abe1da',
+  apiSecret: process.env.XUNFEI_API_SECRET || 'NTUzYTgxMzZhNDE4MmIzYWQxYjJlNzBj',
 
   // API端点
   endpoint: 'wss://ise-api.xfyun.cn/v2/open-ise',

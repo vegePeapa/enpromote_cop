@@ -1,9 +1,9 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const fs = require('fs');
 const MongoStore = require('connect-mongo');
 const session = require('express-session');
-const path = require('path');
 const morgan = require('morgan');
 const { port, host } = require('./config/serve');
 const db = require('./config/db');
@@ -104,8 +104,16 @@ app.use(express.static(publicPath));
 
 // 认证中间件
 function requireAuth(req, res, next) {
-    // 白名单路由
-    const publicPaths = ['/api/auth/login', '/api/auth/register', '/word'];
+    // 白名单路由 - 不需要登录即可访问
+    const publicPaths = [
+        '/api/auth/login', 
+        '/api/auth/register', 
+        '/word',
+        '/api/oral',  // 口语评测接口
+        '/api/oral/config',
+        '/api/oral/evaluate',
+        '/api/oral/batch-evaluate'
+    ];
     if (publicPaths.some(path => req.originalUrl.startsWith(path))) {
         return next();
     }
@@ -238,4 +246,3 @@ process.on('unhandledRejection', (reason, promise) => {
         promise: promise
     });
 });
- 
