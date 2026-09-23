@@ -1,5 +1,16 @@
 const mongoose = require('mongoose');
+
 let userSchema = new mongoose.Schema({
+    role: {
+        type: String,
+        enum: ['user', 'admin', 'manager'],
+        default: 'user'
+    },
+    status: {
+        type: String,
+        enum: ['active', 'disabled', 'pending'],
+        default: 'active'
+    },
     username: {
         type: String,
         required: true,
@@ -128,6 +139,14 @@ let userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
     // 签到相关字段
     checkIn: {
         lastCheckInDate: {
@@ -148,6 +167,15 @@ let userSchema = new mongoose.Schema({
             default: new Map()
         }
     }
+}, { timestamps: true });
+
+userSchema.pre('save', function(next) {
+    if (!this.createdAt) {
+        this.createdAt = new Date();
+    }
+    this.updatedAt = new Date();
+    next();
 });
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;
